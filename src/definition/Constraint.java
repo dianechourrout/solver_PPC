@@ -32,6 +32,6 @@ public abstract class Constraint {
 
     // Toutes les variables sur lesquelles porte la contrainte sont instanciées
     public abstract boolean allInstantiated();
-
+ ///test_git
 
 }
