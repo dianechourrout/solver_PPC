@@ -1,6 +1,8 @@
 package definition;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class Csp {
 
@@ -60,6 +62,24 @@ public class Csp {
     	}
     	return true;
         //throw new UnsupportedOperationException("Vous devez implémenter la méthode hasSolution() de la classe Csp");
+    }
+    public void propagate(Variable variable) {
+    	Queue<Variable> queue= new LinkedList<Variable>();
+    	queue.add(variable);
+    	while (!queue.isEmpty()) {
+    		Variable var = queue.poll();
+    		for (Constraint c:this.getConstraints()) {
+    			if (c.getVars().contains(var)){
+    				if (c.filtrer()){
+    					for (Variable v:c.getVars()) {
+    						if (!v.equals(var)) {
+    							queue.add(v);
+    						}
+    					}
+    				}
+    			}
+    		}
+    	}
     }
 
 
